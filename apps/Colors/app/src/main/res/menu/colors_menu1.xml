@@ -10,5 +10,6 @@
     <item android:id="@+id/iteMagenta" android:title="@string/magenta" />
     <item android:id="@+id/iteCyan" android:title="@string/cyan" />
     <item android:id="@+id/iteBlack" android:title="@string/black" />
+    <item android:id="@+id/iteAlpha" android:title="@string/alpha" />
 
 </menu>
