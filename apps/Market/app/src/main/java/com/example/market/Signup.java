@@ -64,6 +64,11 @@ public class Signup extends AppCompatActivity {
                 market.insert("users", null, DATA);
                 Toast.makeText(this, "The user has been created !!!",
                         Toast.LENGTH_SHORT).show();
+                EMAIL.setText("");
+                FIRSTNAME.setText("");
+                LASTNAME.setText("");
+                PASSWORD.setText("");
+
                 //7. Close connection
                 market.close();
             }else{
@@ -71,6 +76,10 @@ public class Signup extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         }else{
+            EMAIL.setError("This field mustn't be empty");
+            FIRSTNAME.setError("This field mustn't be empty");
+            LASTNAME.setError("This field mustn't be empty");
+            PASSWORD.setError("This field mustn't be empty");
             Toast.makeText(this, "You must complete all fields.",
                     Toast.LENGTH_LONG).show();
         }
