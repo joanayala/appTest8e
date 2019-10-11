@@ -25,10 +25,10 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         //Call id's
-        EMAIL = findViewById(R.id.IdEmail);
-        //FIRSTNAME = findViewById(R.id.IdFname);
-        //LASTNAME = findViewById(R.id.IdLname);
-        //PASSWORD = findViewById(R.id.IdPasswd);
+        EMAIL = findViewById(R.id.idEmail);
+        FIRSTNAME = findViewById(R.id.idFname);
+        LASTNAME = findViewById(R.id.idLname);
+        PASSWORD = findViewById(R.id.idPasswd);
     }
 
     public void Register(View view){
@@ -38,9 +38,9 @@ public class Signup extends AppCompatActivity {
         SQLiteDatabase market = manager.getWritableDatabase();
         //3. Get values/text/numbers
         String Email = EMAIL.getText().toString();
-        String Passwd = "1234";
-        String Lname = "McDonald";
-        String Fname = "Peter";
+        String Passwd = PASSWORD.getText().toString();
+        String Lname = LASTNAME.getText().toString();
+        String Fname = FIRSTNAME.getText().toString();
 
         //***Validate: Do not repeat email
         //Call validateEmail function/method
@@ -50,8 +50,9 @@ public class Signup extends AppCompatActivity {
         if(!Email.isEmpty() && !Passwd.isEmpty() &&
                 !Lname.isEmpty() && !Fname.isEmpty()) {
 
-            Cursor row = market.rawQuery("SELECT email" +
-                    "FROM users WHERE email = "+Email,null);
+            Cursor row = market.rawQuery("SELECT email " +
+                    "FROM users WHERE email = '"+Email+"'",null);
+            //if(row.getCount()<1)
             if(!row.moveToFirst()){
                 ContentValues DATA = new ContentValues();
                 //5. Create data pack
@@ -71,7 +72,7 @@ public class Signup extends AppCompatActivity {
             }
         }else{
             Toast.makeText(this, "You must complete all fields.",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
     }
     /*
