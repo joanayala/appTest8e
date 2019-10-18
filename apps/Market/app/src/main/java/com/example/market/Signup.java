@@ -33,7 +33,8 @@ public class Signup extends AppCompatActivity {
 
     public void Register(View view){
         //1. Create Database manager
-        connectionDB manager = new connectionDB(this,"data",null,1);
+        connectionDB manager = new connectionDB(this,
+                "data",null,1);
         //2. Let Database Read/Write
         SQLiteDatabase market = manager.getWritableDatabase();
         //3. Get values/text/numbers

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -28,7 +30,7 @@ public class list_users extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_users);
         //Instance DB connection
-        market = new connectionDB(this, "market",
+        market = new connectionDB(this, "data",
                 null, 1);
         //Create an empty array
         listItem = new ArrayList<>();
@@ -37,6 +39,17 @@ public class list_users extends AppCompatActivity {
 
         //List users information
         viewData();
+
+        //Events
+        userlist.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String text = userlist.getItemAtPosition(i).toString();
+                Toast.makeText(list_users.this,
+                        "Info:" +text, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void viewData() {
@@ -47,6 +60,7 @@ public class list_users extends AppCompatActivity {
                     "Empty Data Base", Toast.LENGTH_SHORT).show();
         }else{
             while(cursor.moveToNext()){
+
                 listItem.add(cursor.getString(2));
                 listItem.add(cursor.getString(3));
             }
